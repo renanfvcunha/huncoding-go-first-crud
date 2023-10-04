@@ -1,0 +1,7 @@
+@BASE_URL=http://localhost:8080
+
+### Get User By Id
+GET {{BASE_URL}}/getUserById/test
+
+### Create User
+POST {{BASE_URL}}/createUser
