@@ -5,3 +5,11 @@ GET {{BASE_URL}}/getUserById/test
 
 ### Create User
 POST {{BASE_URL}}/createUser
+Content-Type: application/json
+
+{
+  "email": "teste@exemplo.com",
+  "password": "teste123",
+  "name": "Renan",
+  "age": 20 
+}
