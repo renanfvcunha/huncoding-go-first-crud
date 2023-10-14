@@ -5,10 +5,12 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"github.com/renanfvcunha/huncoding-go-first-crud/src/config/logger"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/controller/routes"
 )
 
 func main() {
+	logger.Info("About to start user application")
 	err := godotenv.Load()
 
 	if err != nil {
