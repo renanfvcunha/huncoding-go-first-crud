@@ -6,6 +6,7 @@ import (
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/config/validation"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/controller/model/request"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/model"
+	"github.com/renanfvcunha/huncoding-go-first-crud/src/model/service"
 	"go.uber.org/zap"
 )
 
@@ -27,7 +28,9 @@ func CreateUser(c *gin.Context) {
 
 	domain := model.NewUserDomain(userRequest.Email, userRequest.Password, userRequest.Name, userRequest.Age)
 
-	if err := domain.CreateUser(); err != nil {
+	service := service.NewUserDomainService()
+
+	if err := service.CreateUser(domain); err != nil {
 		c.JSON(err.Code, err)
 
 		return

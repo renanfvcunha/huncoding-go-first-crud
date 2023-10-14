@@ -1,7 +1,7 @@
-package model
+package service
 
 import "github.com/renanfvcunha/huncoding-go-first-crud/src/config/restErrors"
 
-func (*UserDomain) UpdateUser(string) *restErrors.RestErr {
+func (*userDomainService) DeleteUser(string) *restErrors.RestErr {
 	return nil
 }
