@@ -6,7 +6,7 @@ import (
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/config/validation"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/controller/model/request"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/model"
-	"github.com/renanfvcunha/huncoding-go-first-crud/src/model/service"
+	"github.com/renanfvcunha/huncoding-go-first-crud/src/view"
 	"go.uber.org/zap"
 )
 
@@ -14,7 +14,7 @@ var (
 	UserDomainInterface model.UserDomainInterface
 )
 
-func CreateUser(c *gin.Context) {
+func (uc *userControllerInterface) CreateUser(c *gin.Context) {
 	logger.Info("Init CreateUser Controller", zap.String("journey", "createUser"))
 	var userRequest request.UserRequest
 
@@ -28,9 +28,7 @@ func CreateUser(c *gin.Context) {
 
 	domain := model.NewUserDomain(userRequest.Email, userRequest.Password, userRequest.Name, userRequest.Age)
 
-	service := service.NewUserDomainService()
-
-	if err := service.CreateUser(domain); err != nil {
+	if err := uc.service.CreateUser(domain); err != nil {
 		c.JSON(err.Code, err)
 
 		return
@@ -38,5 +36,5 @@ func CreateUser(c *gin.Context) {
 
 	logger.Info("User created successfully", zap.String("journey", "createUser"))
 
-	c.Status(201)
+	c.JSON(201, view.ConvertDomainToResponse(domain))
 }
