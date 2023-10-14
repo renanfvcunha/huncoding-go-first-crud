@@ -5,7 +5,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"github.com/renanfvcunha/huncoding-go-first-crud/src/config/database/mongodb"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/config/logger"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/controller"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/controller/routes"
@@ -19,8 +18,6 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
-
-	mongodb.InitConnection()
 
 	// Init Deps
 	service := service.NewUserDomainService()
