@@ -11,6 +11,7 @@ import (
 
 func (uds *userDomainService) CreateUser(ud model.UserDomainInterface) (model.UserDomainInterface, *restErrors.RestErr) {
 	logger.Info("Init createUser model", zap.String("journey", "createUser"))
+
 	ud.EncryptPassword()
 
 	fmt.Println(ud)

@@ -8,10 +8,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/config/database/mongodb"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/config/logger"
-	"github.com/renanfvcunha/huncoding-go-first-crud/src/controller"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/controller/routes"
-	"github.com/renanfvcunha/huncoding-go-first-crud/src/model/repository"
-	"github.com/renanfvcunha/huncoding-go-first-crud/src/model/service"
 )
 
 func main() {
@@ -28,10 +25,7 @@ func main() {
 		log.Fatalf("Error trying to connect to database, error=%s \n", err.Error())
 	}
 
-	// Init Deps
-	repository := repository.NewUserRepository(database)
-	service := service.NewUserDomainService(repository)
-	userController := controller.NewUserControllerInterface(service)
+	userController := initDependencies(database)
 
 	router := gin.Default()
 	routes.InitRoutes(&router.RouterGroup, userController)
