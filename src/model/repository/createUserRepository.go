@@ -7,6 +7,8 @@ import (
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/config/logger"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/config/restErrors"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/model"
+	"github.com/renanfvcunha/huncoding-go-first-crud/src/model/repository/entity/converter"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 const (
@@ -19,19 +21,15 @@ func (ur *userRepository) CreateUser(userDomain model.UserDomainInterface) (mode
 
 	collection := ur.dbConn.Collection(collectionName)
 
-	jsonValue, err := userDomain.GetJSONValue()
+	value := converter.ConvertDomainToEntity(userDomain)
+
+	result, err := collection.InsertOne(context.Background(), value)
 
 	if err != nil {
 		return nil, restErrors.NewInternalServerError(err.Error())
 	}
 
-	result, err := collection.InsertOne(context.Background(), jsonValue)
+	value.ID = result.InsertedID.(primitive.ObjectID)
 
-	if err != nil {
-		return nil, restErrors.NewInternalServerError(err.Error())
-	}
-
-	userDomain.SetID(result.InsertedID.(string))
-
-	return userDomain, nil
+	return converter.ConvertEntityToDomain(*value), nil
 }

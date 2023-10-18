@@ -1,13 +1,16 @@
 package main
 
 import (
+	"context"
 	"log"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	"github.com/renanfvcunha/huncoding-go-first-crud/src/config/database/mongodb"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/config/logger"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/controller"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/controller/routes"
+	"github.com/renanfvcunha/huncoding-go-first-crud/src/model/repository"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/model/service"
 )
 
@@ -19,8 +22,15 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
+	database, err := mongodb.NewMongoDbConnection(context.Background())
+
+	if err != nil {
+		log.Fatalf("Error trying to connect to database, error=%s \n", err.Error())
+	}
+
 	// Init Deps
-	service := service.NewUserDomainService()
+	repository := repository.NewUserRepository(database)
+	service := service.NewUserDomainService(repository)
 	userController := controller.NewUserControllerInterface(service)
 
 	router := gin.Default()
