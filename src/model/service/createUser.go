@@ -9,7 +9,7 @@ import (
 	"go.uber.org/zap"
 )
 
-func (uds *userDomainService) CreateUser(ud model.UserDomainInterface) (model.UserDomainInterface, *restErrors.RestErr) {
+func (uds *userDomainService) CreateUserService(ud model.UserDomainInterface) (model.UserDomainInterface, *restErrors.RestErr) {
 	logger.Info("Init createUser model", zap.String("journey", "createUser"))
 
 	ud.EncryptPassword()

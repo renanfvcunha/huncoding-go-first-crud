@@ -1,15 +1,18 @@
 @BASE_URL=http://localhost:8080
 
 ### Get User By Id
-GET {{BASE_URL}}/getUserById/test
+GET {{BASE_URL}}/getUserById/6538511229e6d4f6bd5c5d63
+
+### Get User By Email
+GET {{BASE_URL}}/getUserByEmail/rcunha@teste.com
 
 ### Create User
 POST {{BASE_URL}}/createUser
 Content-Type: application/json
 
 {
-  "email": "teste@example.com",
+  "email": "rcunha@teste.com",
   "password": "teste@123",
   "name": "Renan",
-  "age": 2
+  "age": 51
 }
