@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/config/logger"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/config/validation"
@@ -47,5 +49,5 @@ func (uc *userControllerInterface) CreateUser(c *gin.Context) {
 		zap.String("journey", "createUser"),
 	)
 
-	c.JSON(201, view.ConvertDomainToResponse(domainResult))
+	c.JSON(http.StatusCreated, view.ConvertDomainToResponse(domainResult))
 }

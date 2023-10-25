@@ -16,3 +16,11 @@ Content-Type: application/json
   "name": "Renan",
   "age": 51
 }
+
+### Update User
+PUT {{BASE_URL}}/updateUser/6538511229e6d4f6bd5c5d63
+Content-Type: application/json
+
+{
+  "age": 44
+}

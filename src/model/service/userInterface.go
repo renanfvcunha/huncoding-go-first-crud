@@ -12,7 +12,7 @@ type userDomainService struct {
 
 type UserDomainService interface {
 	CreateUserService(model.UserDomainInterface) (model.UserDomainInterface, *restErrors.RestErr)
-	UpdateUser(string, model.UserDomainInterface) *restErrors.RestErr
+	UpdateUserService(string, model.UserDomainInterface) *restErrors.RestErr
 	FindUserByIDService(
 		id string,
 	) (model.UserDomainInterface, *restErrors.RestErr)
