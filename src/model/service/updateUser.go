@@ -13,6 +13,12 @@ func (uds *userDomainService) UpdateUserService(userId string, ud model.UserDoma
 	err := uds.userRepository.UpdateUser(userId, ud)
 
 	if err != nil {
+		logger.Error(
+			"Error trying to call repository",
+			err,
+			zap.String("journey", "updateUser"),
+		)
+
 		return err
 	}
 

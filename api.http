@@ -4,17 +4,17 @@
 GET {{BASE_URL}}/getUserById/6538511229e6d4f6bd5c5d63
 
 ### Get User By Email
-GET {{BASE_URL}}/getUserByEmail/rcunha@teste.com
+GET {{BASE_URL}}/getUserByEmail/rcunha2@teste.com
 
 ### Create User
 POST {{BASE_URL}}/createUser
 Content-Type: application/json
 
 {
-  "email": "rcunha@teste.com",
+  "email": "rcunha2@teste.com",
   "password": "teste@123",
-  "name": "Renan",
-  "age": 51
+  "name": "Renan 2",
+  "age": 14
 }
 
 ### Update User
@@ -24,3 +24,6 @@ Content-Type: application/json
 {
   "age": 44
 }
+
+### Delete User
+DELETE {{BASE_URL}}/deleteUser/653c0cf66bcde458d9c4d6cf

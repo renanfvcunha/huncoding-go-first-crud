@@ -19,7 +19,7 @@ type UserDomainService interface {
 	FindUserByEmailService(
 		email string,
 	) (model.UserDomainInterface, *restErrors.RestErr)
-	DeleteUser(string) *restErrors.RestErr
+	DeleteUserService(string) *restErrors.RestErr
 }
 
 func NewUserDomainService(userRepository repository.UserRepository) UserDomainService {

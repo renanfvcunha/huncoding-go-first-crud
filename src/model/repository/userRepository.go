@@ -34,4 +34,7 @@ type UserRepository interface {
 	FindUserByID(
 		id string,
 	) (model.UserDomainInterface, *restErrors.RestErr)
+	DeleteUser(
+		userId string,
+	) *restErrors.RestErr
 }
