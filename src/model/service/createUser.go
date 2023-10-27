@@ -1,8 +1,6 @@
 package service
 
 import (
-	"fmt"
-
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/config/logger"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/config/restErrors"
 	"github.com/renanfvcunha/huncoding-go-first-crud/src/model"
@@ -13,8 +11,6 @@ func (uds *userDomainService) CreateUserService(ud model.UserDomainInterface) (m
 	logger.Info("Init createUser model", zap.String("journey", "createUser"))
 
 	ud.EncryptPassword()
-
-	fmt.Println(ud)
 
 	userDomainRepository, err := uds.userRepository.CreateUser(ud)
 

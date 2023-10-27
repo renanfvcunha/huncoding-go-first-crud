@@ -7,6 +7,15 @@ import (
 	"go.uber.org/zap"
 )
 
+func (uds userDomainService) FindAllUsers() (
+	[]model.UserDomainInterface,
+	*restErrors.RestErr,
+) {
+	logger.Info("Init findUserByID services", zap.String("journey", "findUserByID"))
+
+	return uds.userRepository.FindAllUsers()
+}
+
 func (uds *userDomainService) FindUserByIDService(
 	id string,
 ) (model.UserDomainInterface, *restErrors.RestErr) {

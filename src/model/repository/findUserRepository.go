@@ -97,3 +97,48 @@ func (ur *userRepository) FindUserByID(
 
 	return converter.ConvertEntityToDomain(*userEntity), nil
 }
+
+func (ur *userRepository) FindAllUsers() ([]model.UserDomainInterface, *restErrors.RestErr) {
+	logger.Info(
+		"Init findAllUsers repository",
+		zap.String("journey", "findAllUsers"),
+	)
+
+	collectionName := os.Getenv(MONGODB_USER_COLLECTION)
+
+	collection := ur.dbConn.Collection(collectionName)
+
+	cur, err := collection.Find(context.Background(), bson.D{})
+
+	if err != nil {
+		errorMessage := "Error on finding users"
+		logger.Error(
+			errorMessage,
+			err,
+			zap.String("journey", "findAllUsers"),
+		)
+
+		return nil, restErrors.NewInternalServerError(errorMessage)
+	}
+
+	var queryResults []entity.UserEntity
+
+	if err = cur.All(context.Background(), &queryResults); err != nil {
+		errorMessage := "Error on decoding users"
+		logger.Error(
+			errorMessage,
+			err,
+			zap.String("journey", "findAllUsers"),
+		)
+
+		return nil, restErrors.NewInternalServerError(errorMessage)
+	}
+
+	var results []model.UserDomainInterface
+
+	for _, result := range queryResults {
+		results = append(results, converter.ConvertEntityToDomain(result))
+	}
+
+	return results, nil
+}
