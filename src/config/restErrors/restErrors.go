@@ -60,10 +60,18 @@ func NewNotFoundError(message string) *RestErr {
 	}
 }
 
-func NewForbidden(message string) *RestErr {
+func NewForbiddenError(message string) *RestErr {
 	return &RestErr{
 		Message: message,
 		Err:     "forbidden",
 		Code:    http.StatusForbidden,
+	}
+}
+
+func NewUnprocessableEntityError(message string) *RestErr {
+	return &RestErr{
+		Message: message,
+		Err:     "unprocessable_entity",
+		Code:    http.StatusUnprocessableEntity,
 	}
 }
