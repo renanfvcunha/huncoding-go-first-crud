@@ -21,6 +21,9 @@ type UserDomainService interface {
 		email string,
 	) (model.UserDomainInterface, *restErrors.RestErr)
 	DeleteUserService(string) *restErrors.RestErr
+	LoginUserService(
+		model.UserDomainInterface,
+	) (model.UserDomainInterface, *restErrors.RestErr)
 }
 
 func NewUserDomainService(userRepository repository.UserRepository) UserDomainService {

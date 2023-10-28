@@ -38,4 +38,8 @@ type UserRepository interface {
 	DeleteUser(
 		userId string,
 	) *restErrors.RestErr
+	FindUserByEmailAndPassword(
+		email string,
+		password string,
+	) (model.UserDomainInterface, *restErrors.RestErr)
 }

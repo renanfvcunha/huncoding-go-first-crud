@@ -30,3 +30,12 @@ Content-Type: application/json
 
 ### Delete User
 DELETE {{BASE_URL}}/deleteUser/653c0cf66bcde458d9c4d6cf
+
+### Login User
+POST {{BASE_URL}}/login
+Content-Type: application/json
+
+{
+  "email": "rcunha@teste.com",
+  "password": "teste@1234"
+}

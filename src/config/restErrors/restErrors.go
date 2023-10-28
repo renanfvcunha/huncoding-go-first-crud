@@ -75,3 +75,11 @@ func NewUnprocessableEntityError(message string) *RestErr {
 		Code:    http.StatusUnprocessableEntity,
 	}
 }
+
+func NewUnauthorizedError(message string) *RestErr {
+	return &RestErr{
+		Message: message,
+		Err:     "unauthorized",
+		Code:    http.StatusUnauthorized,
+	}
+}
